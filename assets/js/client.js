@@ -1,5 +1,5 @@
 //creating object for the websocket server connection
-var connection = new WebSocket('ws://localhost:5000');
+var connection = new WebSocket('ws://52.170.40.246:5000');
 
 //checking is the connection opened or not
 connection.onopen = function () {
@@ -246,11 +246,10 @@ function loginProcess(success) {
             }]
             }
 
-            myConn = new webkitRTCPeerConnection(configuration, {
-                optional: [{
-                    RtpDataChannels: true
-        }]
-            });
+            myConn = new webkitRTCPeerConnection(configuration);
+
+
+/**
 
             dataChannel = myConn.createDataChannel("channel1", {
                 reliable: true
@@ -264,7 +263,7 @@ function loginProcess(success) {
             dataChannel.onclose = function () {
                 console.log("data channel is closed");
             }
-
+**/
 
             myConn.addStream(stream);
             myConn.onaddstream = function (e) {
@@ -393,6 +392,6 @@ var chatArea = document.querySelector("#chat-area");
 msgSendBtn.addEventListener("click", function (event) {
     var msgVal = msgInput.value;
     chatArea.innerHTML += "<div class='right-align' style='display:flex; align-items:center;align-self:flex-end'><div>" + msgVal + "</div>:<div style='font-weight:600;margin:0 5px;'> " + name + "</div><img src='assets/images/me.jpg' style='height:40px;width:40px;' class='caller-image circle'></div><br/>";
-    dataChannel.send(msgVal);
+    //dataChannel.send(msgVal);
     msgInput.value = "";
 })
